@@ -1,0 +1,348 @@
+
+/* ---------- Base Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F1F3E0;
+  color: #2c3e50;
+}
+
+/* TOP NAVBAR */
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #778873; /* dark green-grey from theme */
+  color: white;
+  padding: 15px 30px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 32px;
+}
+
+.logo-section h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #F1F3E0;
+}
+
+.tagline {
+  font-size: 14px;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  color: #D2DCB6;
+}
+
+.tagline .highlight {
+  font-weight: 700;
+  color: #D2DCB6;
+}
+
+/* Logout button in top navbar */
+.logout-btn {
+  background: #c0392b;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background: #e74c3c;
+}
+
+/* ============================================================
+   MENU BAR (Second Navbar)
+   ============================================================ */
+.menu-bar {
+  display: flex;
+  align-items: center;
+  background-color: #A1BC98; /* medium green from theme */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.menu-bar a {
+  padding: 15px 18px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.menu-bar a:hover {
+  background-color: #778873;
+  color: #F1F3E0;
+}
+
+/* Active page highlight */
+.menu-bar a.active {
+  border-bottom: 3px solid #778873;
+  background-color: #D2DCB6;
+  color: #2c3e50;
+}
+
+/* Push profile dropdown to the right */
+.profile {
+  margin-left: auto;
+  position: relative;
+}
+
+/* Profile button */
+.profile-btn {
+  padding: 15px 20px;
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+}
+
+.profile-btn:hover {
+  background-color: #778873;
+  color: #F1F3E0;
+}
+
+/* Profile dropdown menu */
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  z-index: 1000;
+  border-radius: 0 0 6px 6px;
+}
+
+.dropdown a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.dropdown a:hover {
+  background-color: #A1BC98;
+  color: #2c3e50;
+}
+
+/* Show dropdown on hover */
+.profile:hover .dropdown {
+  display: block;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background-color: #778873;
+  color: #F1F3E0;
+  margin-top: 40px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 30px 40px;
+  gap: 20px;
+}
+
+.footer-section h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #F1F3E0;
+  border-bottom: 1px solid #A1BC98;
+  padding-bottom: 6px;
+}
+
+.footer-section p {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #D2DCB6;
+}
+
+.footer-section a {
+  color: #D2DCB6;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: #F1F3E0;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 12px;
+  background-color: #5a6b56;
+  font-size: 13px;
+  color: #D2DCB6;
+}
+
+/* ============================================================
+   GENERAL UTILITY CLASSES (shared across pages)
+   ============================================================ */
+
+/* Page wrapper */
+.container {
+  padding: 25px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Page section title */
+.page-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #778873;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Generic card/panel */
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+/* Generic button */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+button:disabled {
+  background-color: #aaa !important;
+  cursor: not-allowed;
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: #778873;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #5a6b56;
+}
+
+/* Secondary/outline button */
+.btn-secondary {
+  background-color: #D2DCB6;
+  color: #2c3e50;
+}
+
+.btn-secondary:hover {
+  background-color: #A1BC98;
+}
+
+/* Danger button */
+.btn-danger {
+  background-color: #c0392b;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #e74c3c;
+}
+
+/* Success badge */
+.badge-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Warning badge */
+.badge-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Danger badge */
+.badge-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Info badge */
+.badge-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Alert / notification boxes */
+.alert {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border-left: 4px solid #28a745;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-left: 4px solid #17a2b8;
+}
