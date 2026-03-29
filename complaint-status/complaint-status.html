@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Complaint Status - BillGate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../shared-header-footer.css" />
+  <link rel="stylesheet" href="complaint-status.css" />
+</head>
+<body>
+
+  <!-- ===== TOP NAVBAR ===== -->
+  <div class="top-navbar">
+    <div class="logo-section">
+      <div class="logo">⚡</div>
+      <div>
+        <h2>BillGate</h2>
+        <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.</div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="handleLogout()">
+      <i class="fa fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+
+  <!-- ===== MENU BAR ===== -->
+  <div class="menu-bar">
+    <a href="../home/home.html"><i class="fa fa-home"></i> Dashboard</a>
+    <a href="../view-bills/view-bills.html"><i class="fa fa-file-invoice"></i> View Bills</a>
+    <a href="../view-bills/view-bills.html"><i class="fa fa-credit-card"></i> Pay Bill</a>
+    <a href="../bill-history/bill-history.html"><i class="fa fa-history"></i> Bill History</a>
+    <a href="../register-complaint/register-complaint.html"><i class="fa fa-exclamation-circle"></i> Register Complaint</a>
+    <a href="complaint-status.html" class="active"><i class="fa fa-search"></i> Complaint Status</a>
+    <a href="../connection-request/connection-request.html"><i class="fa fa-plug"></i> Connection Request</a>
+    <div class="profile">
+      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile ▾</button>
+      <div class="dropdown">
+        <a href="#"><i class="fa fa-id-card"></i> View Profile</a>
+        <a href="#"><i class="fa fa-edit"></i> Edit Profile</a>
+        <a href="#" onclick="handleLogout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE CONTENT ===== -->
+  <div class="container">
+
+    <div class="page-title"><i class="fa fa-search"></i> Complaint Status</div>
+
+    <!-- ===== SEARCH PANEL (US009 - req 1) ===== -->
+    <!-- User can search by complaint ID or by status -->
+    <div class="white-box">
+      <h3 class="box-title"><i class="fa fa-filter"></i> Search Complaint</h3>
+
+      <!-- Complaint Number text box (US009 - req 1) -->
+      <div class="search-row">
+        <div class="field-group">
+          <label for="search-id">Complaint Number</label>
+          <input type="text" id="search-id" placeholder="e.g. CMP-123456" />
+        </div>
+
+        <div class="or-text">OR</div>
+
+        <!-- Status dropdown filter (US009 - req 1) -->
+        <div class="field-group">
+          <label for="search-status">Status</label>
+          <select id="search-status">
+            <option value="">-- All Statuses --</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+
+        <!-- Submit button (US009 - req 1) -->
+        <div class="field-group">
+          <label>&nbsp;</label>
+          <button class="btn-green" onclick="searchComplaint()">
+            <i class="fa fa-search"></i> Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Error message if nothing entered -->
+      <div id="search-err" class="search-err" style="display:none;"></div>
+    </div>
+
+    <!-- ===== RESULTS AREA ===== -->
+    <!-- Hidden until search is done -->
+    <div id="results-area" style="display:none;">
+
+      <!-- No results message -->
+      <div id="no-results" class="white-box" style="display:none; text-align:center; padding:30px; color:#888;">
+        <i class="fa fa-inbox" style="font-size:36px; color:#D2DCB6; display:block; margin-bottom:10px;"></i>
+        <p>No complaints found matching your search.</p>
+      </div>
+
+      <!-- Results table (US009 - req 1: shows complaint ID, date, type, status) -->
+      <div id="results-box" class="white-box" style="display:none;">
+        <h3 class="box-title"><i class="fa fa-list"></i> Search Results</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Complaint ID</th>
+              <th>Complaint Type</th>
+              <th>Category</th>
+              <th>Submission Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="results-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- Complaint detail view (opens when View Details clicked) -->
+      <div id="detail-box" class="white-box" style="display:none;">
+        <h3 class="box-title"><i class="fa fa-info-circle"></i> Complaint Details</h3>
+        <div id="detail-content"></div>
+        <br>
+        <button class="btn-outline" onclick="document.getElementById('detail-box').style.display='none'">
+          <i class="fa fa-chevron-up"></i> Hide
+        </button>
+      </div>
+
+    </div>
+    <!-- end results area -->
+
+  </div>
+  <!-- end container -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>&#9889; BillGate</h3>
+        <p>Smart platform to manage electricity bills, payments and complaints.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="../home/home.html">Dashboard</a></p>
+        <p><a href="../view-bills/view-bills.html">View Bills</a></p>
+        <p><a href="../register-complaint/register-complaint.html">Register Complaint</a></p>
+        <p><a href="complaint-status.html">Complaint Status</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: support@billgate.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Helpline: 1800-XXX-XXXX</p>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Twitter</a></p>
+        <p><a href="#">LinkedIn</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">&#169; 2026 BillGate | All Rights Reserved</div>
+  </footer>
+
+  <script src="complaint-status.js"></script>
+</body>
+</html>
