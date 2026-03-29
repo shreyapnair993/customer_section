@@ -1,0 +1,203 @@
+/* ============================================================
+   REGISTER COMPLAINT - register-complaint.css
+   Color Theme: #F1F3E0 | #D2DCB6 | #A1BC98 | #778873
+   ============================================================ */
+
+/* White form box */
+.white-box {
+  background-color: white;
+  border: 1px solid #D2DCB6;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Section title */
+.box-title {
+  font-size: 16px;
+  color: #778873;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #D2DCB6;
+}
+
+/* Each form field wrapper */
+.field-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.field-group label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+/* Required asterisk */
+.star {
+  color: red;
+}
+
+/* Inputs, selects, textarea */
+.field-group input,
+.field-group select,
+.field-group textarea {
+  padding: 9px 11px;
+  border: 1px solid #D2DCB6;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: #2c3e50;
+}
+
+.field-group input:focus,
+.field-group select:focus,
+.field-group textarea:focus {
+  border-color: #778873;
+  outline: none;
+}
+
+/* Disabled select styling */
+.field-group select:disabled {
+  background-color: #f0f0f0;
+  color: #aaa;
+}
+
+/* Textarea only resizes vertically */
+.field-group textarea {
+  resize: vertical;
+}
+
+/* Character counter under textarea */
+.field-group small {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Radio buttons row */
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.radio-row label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* Error messages under fields */
+.err {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  min-height: 16px;
+}
+
+/* Two column layout for contact fields */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Buttons row */
+.btn-row {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #D2DCB6;
+  display: flex;
+  gap: 12px;
+}
+
+/* Green filled button */
+.btn-green {
+  background-color: #778873;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-green:hover {
+  background-color: #5a6b56;
+}
+
+/* Outline button */
+.btn-outline {
+  background-color: white;
+  color: #778873;
+  border: 1px solid #778873;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-outline:hover {
+  background-color: #F1F3E0;
+}
+
+/* ===== SUCCESS BOX ===== */
+.success-box {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-left: 5px solid #28a745;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #155724;
+}
+
+.success-box h3 {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+/* Detail rows inside success box */
+.detail-row {
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid #c3e6cb;
+  display: flex;
+  gap: 10px;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-key {
+  font-weight: bold;
+  min-width: 200px;
+  color: #155724;
+}
+
+/* Complaint ID badge */
+.cmp-id {
+  background-color: #A1BC98;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}

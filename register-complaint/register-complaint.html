@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register Complaint - BillGate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../shared-header-footer.css" />
+  <link rel="stylesheet" href="register-complaint.css" />
+</head>
+<body>
+
+  <!--TOP NAVBAR-->
+  <div class="top-navbar">
+    <div class="logo-section">
+      <div class="logo"><i class="fa-solid fa-bolt" style="color: rgb(255, 212, 59);"></i></div>
+      <div>
+        <h2>BillGate</h2>
+        <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.</div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="handleLogout()">
+      <i class="fa fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+
+  <!-- MENU BAR -->
+  <div class="menu-bar">
+    <a href="../home/home.html"><i class="fa fa-home"></i> Dashboard</a>
+    <a href="../view-bills/view-bills.html"><i class="fa fa-file-invoice"></i> View Bills</a>
+    <a href="../view-bills/view-bills.html"><i class="fa fa-credit-card"></i> Pay Bill</a>
+    <a href="../bill-history/bill-history.html"><i class="fa fa-history"></i> Bill History</a>
+    <a href="register-complaint.html" class="active"><i class="fa fa-exclamation-circle"></i> Register Complaint</a>
+    <a href="../complaint-status/complaint-status.html"><i class="fa fa-search"></i> Complaint Status</a>
+    <a href="../connection-request/connection-request.html"><i class="fa fa-plug"></i> Connection Request</a>
+    <div class="profile">
+      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile ▾</button>
+      <div class="dropdown">
+        <a href="#"><i class="fa fa-id-card"></i> View Profile</a>
+        <a href="#"><i class="fa fa-edit"></i> Edit Profile</a>
+        <a href="#" onclick="handleLogout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!--PAGE CONTENT  -->
+  <div class="container">
+
+    <div class="page-title"><i class="fa fa-exclamation-circle"></i> Register Complaint / Service Request</div>
+
+    <!-- Success box - shown after successful submission (US008 - req 3) -->
+    <!-- Hidden by default, shown by JS after form submit -->
+    <div id="success-box" style="display:none;" class="success-box">
+      <h3><i class="fa fa-check-circle"></i> Complaint Registered Successfully!</h3>
+      <div id="success-details"></div>
+      <br>
+      <button class="btn-green" onclick="window.location='../home/home.html'">
+        <i class="fa fa-home"></i> Back to Dashboard
+      </button>
+      &nbsp;
+      <button class="btn-outline" onclick="window.location='../complaint-status/complaint-status.html'">
+        <i class="fa fa-search"></i> View Complaint Status
+      </button>
+    </div>
+
+    <!-- COMPLAINT FORM (US008 - req 1) -->
+    <div id="form-box" class="white-box">
+      <h3 class="box-title"><i class="fa fa-pen"></i> Complaint Details</h3>
+
+      <!-- Complaint Type dropdown (US008 - req 1) -->
+      <div class="field-group">
+        <label for="complaint-type">Complaint Type <span class="star">*</span></label>
+        <select id="complaint-type" onchange="loadCategories()">
+          <option value="">-- Select Complaint Type --</option>
+          <option value="billing">Billing Issue</option>
+          <option value="power">Power Outage</option>
+          <option value="meter">Meter Reading Issue</option>
+          <option value="service">Service Request</option>
+          <option value="wiring">Wiring / Technical Issue</option>
+          <option value="other">Other</option>
+        </select>
+        <span class="err" id="err-type"></span>
+      </div>
+
+      <!-- Category dropdown - updates based on complaint type (US008 - req 1) -->
+      <div class="field-group">
+        <label for="category">Category <span class="star">*</span></label>
+        <select id="category" disabled>
+          <option value="">-- Select Category --</option>
+        </select>
+        <span class="err" id="err-category"></span>
+      </div>
+
+      <!-- Description text area with character limit (US008 - req 1 & req 2) -->
+      <div class="field-group">
+        <label for="description">Description <span class="star">*</span></label>
+        <textarea id="description" rows="5" maxlength="500"
+          placeholder="Describe your complaint in detail (minimum 20 characters)..."
+          oninput="countChars()"></textarea>
+        <small id="char-count">0 / 500 characters</small>
+        <span class="err" id="err-description"></span>
+      </div>
+
+      <!-- Preferred Contact Method radio buttons (US008 - req 1) -->
+      <div class="field-group">
+        <label>Preferred Contact Method <span class="star">*</span></label>
+        <div class="radio-row">
+          <label>
+            <input type="radio" name="contact-method" value="email" />
+            <i class="fa fa-envelope"></i> Email
+          </label>
+          &nbsp;&nbsp;
+          <label>
+            <input type="radio" name="contact-method" value="phone" />
+            <i class="fa fa-phone"></i> Phone
+          </label>
+        </div>
+        <span class="err" id="err-contact"></span>
+      </div>
+
+      <!-- Contact Details - pre-filled but editable (US008 - req 1) -->
+      <div class="two-col">
+        <div class="field-group">
+          <label for="email-val">Email Address <span class="star">*</span></label>
+          <input type="email" id="email-val" value="rajesh.kumar@email.com" placeholder="Enter your email" />
+          <span class="err" id="err-email"></span>
+        </div>
+        <div class="field-group">
+          <label for="phone-val">Phone Number <span class="star">*</span></label>
+          <input type="tel" id="phone-val" value="+91 9876543210" placeholder="Enter your phone number" />
+          <span class="err" id="err-phone"></span>
+        </div>
+      </div>
+
+      <!-- Submit and Reset buttons (US008 - req 1) -->
+      <!-- Reset button resets and refreshes the page -->
+      <div class="btn-row">
+        <button class="btn-green" onclick="submitForm()">
+          <i class="fa fa-paper-plane"></i> Submit Complaint
+        </button>
+        <button class="btn-outline" onclick="resetForm()">
+          <i class="fa fa-rotate-left"></i> Reset
+        </button>
+      </div>
+
+    </div>
+    <!-- end form box -->
+
+  </div>
+  <!-- end container -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>&#9889; BillGate</h3>
+        <p>Smart platform to manage electricity bills, payments and complaints.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="../home/home.html">Dashboard</a></p>
+        <p><a href="../view-bills/view-bills.html">View Bills</a></p>
+        <p><a href="register-complaint.html">Complaints</a></p>
+        <p><a href="../complaint-status/complaint-status.html">Complaint Status</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: support@billgate.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Helpline: 1800-XXX-XXXX</p>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Twitter</a></p>
+        <p><a href="#">LinkedIn</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">&#169; 2026 BillGate | All Rights Reserved</div>
+  </footer>
+
+  <script src="register-complaint.js"></script>
+</body>
+</html>
