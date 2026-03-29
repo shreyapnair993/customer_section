@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Dashboard - BillGate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../shared-header-footer.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <div class="top-navbar">
+    <div class="logo-section">
+      <!-- LOGO -->
+      <div class="logo"><i class="fa-solid fa-bolt" style="color: rgb(255, 212, 59);"></i></div>
+      <div>
+        <h2>BillGate</h2>
+        <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.</div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="handleLogout()">
+      <i class="fa fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+
+  <!-- MENU BAR -->
+  <div class="menu-bar">
+    <a href="home.html" class="active"><i class="fa fa-home"></i> Dashboard</a>
+    <a href="../view-bills/view-bills.html"><i class="fa fa-file-invoice"></i> View Bills</a>
+    <a href="../view-bills/view-bills.html"><i class="fa fa-credit-card"></i> Pay Bill</a>
+    <a href="../bill-history/bill-history.html"><i class="fa fa-history"></i> Bill History</a>
+    <a href="../register-complaint/register-complaint.html"><i class="fa fa-exclamation-circle"></i> Register Complaint</a>
+    <a href="../complaint-status/complaint-status.html"><i class="fa fa-search"></i> Complaint Status</a>
+    <a href="../connection-request/connection-request.html"><i class="fa fa-plug"></i> Connection Request</a>
+    <div class="profile">
+      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile ▾</button>
+      <div class="dropdown">
+        <a href="#"><i class="fa fa-id-card"></i> View Profile</a>
+        <a href="#"><i class="fa fa-edit"></i> Edit Profile</a>
+        <a href="#" onclick="handleLogout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div class="container">
+
+    <!-- Welcome message-->
+    <!-- Shows customer name, account number and billing address -->
+    <p class="welcome-text">
+      Welcome, <strong>Rajesh Kumar</strong> &nbsp;|&nbsp;
+      Account No: <strong>ACC-2024-00312</strong> &nbsp;|&nbsp;
+      Address: 42, MG Road, Indore, MP
+    </p>
+
+    <!-- CURRENT BILL SUMMARY-->
+    <!-- Shows billing period, due date, amount due -->
+    <!-- Unpaid bills show a Pay Now button -->
+    <div class="section">
+      <h3><i class="fa fa-receipt"></i> Current Bill Summary</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Consumer No</th>
+            <th>Bill Number</th>
+            <th>Billing Period</th>
+            <th>Bill Date</th>
+            <th>Due Date</th>
+            <th>Amount Due</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1234567890123</td>
+            <td>BILL-2026-0312</td>
+            <td>March 2026</td>
+            <td>01 Mar 2026</td>
+            <td>15 Apr 2026</td>
+            <td>&#8377; 1,245.00</td>
+            <td><span class="unpaid">Unpaid</span></td>
+            <td><button class="btn-pay" onclick="window.location='../view-bills/view-bills.html'">Pay Now</button></td>
+          </tr>
+          <tr>
+            <td>1234567890123</td>
+            <td>BILL-2026-0213</td>
+            <td>February 2026</td>
+            <td>01 Feb 2026</td>
+            <td>15 Mar 2026</td>
+            <td>&#8377; 1,205.00</td>
+            <td><span class="unpaid">Unpaid</span></td>
+            <td><button class="btn-pay" onclick="window.location='../view-bills/view-bills.html'">Pay Now</button></td>
+          </tr>
+          <tr>
+            <td>1234567890123</td>
+            <td>BILL-2026-0112</td>
+            <td>January 2026</td>
+            <td>01 Jan 2026</td>
+            <td>15 Feb 2026</td>
+            <td>&#8377; 980.00</td>
+            <td><span class="paid">Paid</span></td>
+            <td><button class="btn-view">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="right-link"><a href="../bill-history/bill-history.html">View full bill history &rarr;</a></p>
+    </div>
+
+    <!-- QUICK NAVIGATIONS -->
+    <!-- Each feature has icon and links to its page -->
+    <div class="section">
+      <h3><i class="fa fa-th-large"></i> Quick Actions</h3>
+      <div class="actions">
+        <div class="action-box" onclick="window.location='../view-bills/view-bills.html'">
+          <i class="fa fa-file-invoice"></i><br>View Bills
+        </div>
+        <div class="action-box" onclick="window.location='../view-bills/view-bills.html'">
+          <i class="fa fa-credit-card"></i><br>Pay Bill
+        </div>
+        <div class="action-box" onclick="window.location='../bill-history/bill-history.html'">
+          <i class="fa fa-history"></i><br>Bill History
+        </div>
+        <div class="action-box" onclick="window.location='../register-complaint/register-complaint.html'">
+          <i class="fa fa-exclamation-circle"></i><br>Register Complaint
+        </div>
+        <div class="action-box" onclick="window.location='../complaint-status/complaint-status.html'">
+          <i class="fa fa-search"></i><br>Complaint Status
+        </div>
+        <div class="action-box" onclick="window.location='../view-complaints/view-complaints.html'">
+          <i class="fa fa-list-alt"></i><br>Complaint History
+        </div>
+        <div class="action-box" onclick="window.location='../connection-request/connection-request.html'">
+          <i class="fa fa-plug"></i><br>Connection Request
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE AND ACCOUNT SETTINGS (US002 - req 4) -->
+    <!-- Customers can view and update their profile info -->
+    <div class="section">
+      <h3><i class="fa fa-user"></i> Account Settings</h3>
+      <table class="profile-table">
+        <tr>
+          <td class="lbl">Full Name</td>
+          <td>Rajesh Kumar</td>
+          <td class="lbl">Email</td>
+          <td>rajesh.kumar@email.com</td>
+        </tr>
+        <tr>
+          <td class="lbl">Mobile</td>
+          <td>+91 9876543210</td>
+          <td class="lbl">Customer Type</td>
+          <td>Residential</td>
+        </tr>
+        <tr>
+          <td class="lbl">Billing Address</td>
+          <td>42, MG Road, Indore, MP - 452001</td>
+          <td class="lbl">Electrical Section</td>
+          <td>Indore Region</td>
+        </tr>
+        <tr>
+          <td class="lbl">Consumer No</td>
+          <td>1234567890123</td>
+          <td class="lbl">Connection Status</td>
+          <td style="color:green; font-weight:bold;">Connected</td>
+        </tr>
+      </table>
+      <br>
+      <!-- Edit profile link (US002 - req 4) -->
+      <button class="btn-edit" onclick="window.location='#'">
+        <i class="fa fa-edit"></i> Edit Profile
+      </button>
+    </div>
+
+  </div>
+  <!-- end container -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>&#9889; BillGate</h3>
+        <p>Smart platform to manage electricity bills, payments and complaints.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="home.html">Dashboard</a></p>
+        <p><a href="../view-bills/view-bills.html">View Bills</a></p>
+        <p><a href="../register-complaint/register-complaint.html">Complaints</a></p>
+        <p><a href="../complaint-status/complaint-status.html">Complaint Status</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: support@billgate.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Helpline: 1800-XXX-XXXX</p>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Twitter</a></p>
+        <p><a href="#">LinkedIn</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">&#169; 2026 BillGate | All Rights Reserved</div>
+  </footer>
+
+  <script src="home.js"></script>
+</body>
+</html>
