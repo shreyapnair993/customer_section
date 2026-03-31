@@ -24,6 +24,17 @@
     </button>
   </div>
 
+  <!-- CONFIRMATION MODEL -->
+   <div class="model" id="confirm_m">
+    <div class="model-content">
+      <p>Confirm you want to logout !</p>
+      <br>
+      <br>
+      <button onclick="c_logout()" class="c_btn">Confirm</button>
+      <button onclick="cancel_lg()" class="c_btn">Cancel</button>
+    </div>
+   </div>
+
   <!-- MENU BAR -->
   <div class="menu-bar">
     <a href="home.html" class="active"><i class="fa fa-home"></i> Dashboard</a>
@@ -34,7 +45,7 @@
     <a href="../complaint-status/complaint-status.html"><i class="fa fa-search"></i> Complaint Status</a>
     <a href="../connection-request/connection-request.html"><i class="fa fa-plug"></i> Connection Request</a>
     <div class="profile">
-      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile ▾</button>
+      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile</button>
       <div class="dropdown">
         <a href="#"><i class="fa fa-id-card"></i> View Profile</a>
         <a href="#"><i class="fa fa-edit"></i> Edit Profile</a>
@@ -137,7 +148,7 @@
       </div>
     </div>
 
-    <!-- PROFILE AND ACCOUNT SETTINGS (US002 - req 4) -->
+    <!-- PROFILE AND ACCOUNT SETTINGS-->
     <!-- Customers can view and update their profile info -->
     <div class="section">
       <h3><i class="fa fa-user"></i> Account Settings</h3>
@@ -168,14 +179,13 @@
         </tr>
       </table>
       <br>
-      <!-- Edit profile link (US002 - req 4) -->
+      <!-- Edit profile btn -->
       <button class="btn-edit" onclick="window.location='#'">
         <i class="fa fa-edit"></i> Edit Profile
       </button>
     </div>
 
   </div>
-  <!-- end container -->
 
   <!-- FOOTER -->
   <footer class="footer">
