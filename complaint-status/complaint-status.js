@@ -1,7 +1,4 @@
-// complaint-status.js
-// Handles: Search by ID or status, display results and details (US009)
-
-// ===== Sample complaint data (simulates backend records) =====
+//Sample complaint data
 var sampleComplaints = [
   {
     id: "CMP-100001",
@@ -45,13 +42,13 @@ var sampleComplaints = [
   }
 ];
 
-// ===== Combine sample data with any user-submitted complaints =====
+//Combine sample data with any user-submitted complaints
 function getAllComplaints() {
   var stored = JSON.parse(localStorage.getItem("complaints") || "[]");
   return sampleComplaints.concat(stored);
 }
 
-// ===== Return status badge HTML for a given status =====
+// Return status badge HTML for a given status
 function getStatusBadge(status) {
   if (status === "Pending")     return '<span class="status-pending">Pending</span>';
   if (status === "In Progress") return '<span class="status-inprogress">In Progress</span>';
@@ -60,18 +57,18 @@ function getStatusBadge(status) {
   return status;
 }
 
-// ===== Search complaints (US009 - req 1) =====
-// Searches by complaint ID text box OR status dropdown
+//Search complaints
+//Searches by complaint ID OR status dropdown
 function searchComplaint() {
   var searchId     = document.getElementById("search-id").value.trim().toUpperCase();
   var searchStatus = document.getElementById("search-status").value;
   var errEl        = document.getElementById("search-err");
 
-  // Hide any previous error
+  //Hide any previous error
   errEl.style.display = "none";
   document.getElementById("detail-box").style.display = "none";
 
-  // At least one field must be filled
+  //At least one field must be filled
   if (!searchId && !searchStatus) {
     errEl.textContent = "Please enter a Complaint ID or select a status to search.";
     errEl.style.display = "block";
@@ -81,21 +78,21 @@ function searchComplaint() {
   var all = getAllComplaints();
   var results = all;
 
-  // Filter by complaint ID if entered
+  //Filter by complaint ID if entered
   if (searchId) {
     results = results.filter(function(c) {
       return c.id.toUpperCase().indexOf(searchId) !== -1;
     });
   }
 
-  // Further filter by status if selected
+  //Further filter by status if selected
   if (searchStatus) {
     results = results.filter(function(c) {
       return c.status === searchStatus;
     });
   }
 
-  // Show results area
+  //Show results area
   document.getElementById("results-area").style.display = "block";
 
   if (results.length === 0) {
@@ -111,7 +108,7 @@ function searchComplaint() {
   document.getElementById("results-area").scrollIntoView({ behavior: "smooth" });
 }
 
-// ===== Render results into the table =====
+//Render results into the table
 function renderTable(results) {
   var tbody = document.getElementById("results-tbody");
   tbody.innerHTML = "";
@@ -129,8 +126,8 @@ function renderTable(results) {
   });
 }
 
-// ===== Show full detail of a complaint (US009 - req 1) =====
-// Displays Complaint ID, submission date, type, and status
+//Show full detail of a complaint
+//Displays Complaint ID, submission date, type, and status
 function showDetail(id) {
   var all = getAllComplaints();
   var c   = null;
@@ -154,11 +151,16 @@ function showDetail(id) {
   document.getElementById("detail-box").scrollIntoView({ behavior: "smooth" });
 }
 
-// ===== Logout =====
+// LOGOUT
 function handleLogout() {
-  var confirmed = confirm("Are you sure you want to logout?");
-  if (confirmed) {
-    localStorage.clear();
-    window.location.href = "../login/login.html";
-  }
+  document.getElementById("confirm_m").style.display = "flex";
+}
+
+function cancel_lg() {
+  document.getElementById("confirm_m").style.display = "none";
+}
+
+function c_logout() {
+  // Redirect to login page
+  window.location.href = "login.html";
 }
