@@ -9,10 +9,10 @@
 </head>
 <body>
 
-  <!-- ===== TOP NAVBAR ===== -->
+  <!--TOP NAVBAR -->
   <div class="top-navbar">
     <div class="logo-section">
-      <div class="logo">⚡</div>
+      <div class="logo"><i class="fa-solid fa-bolt" style="color: rgb(255, 212, 59);"></i></div>
       <div>
         <h2>BillGate</h2>
         <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.</div>
@@ -23,7 +23,7 @@
     </button>
   </div>
 
-  <!-- ===== MENU BAR ===== -->
+  <!--MENU BAR-->
   <div class="menu-bar">
     <a href="../home/home.html"><i class="fa fa-home"></i> Dashboard</a>
     <a href="../view-bills/view-bills.html"><i class="fa fa-file-invoice"></i> View Bills</a>
@@ -33,7 +33,7 @@
     <a href="complaint-status.html" class="active"><i class="fa fa-search"></i> Complaint Status</a>
     <a href="../connection-request/connection-request.html"><i class="fa fa-plug"></i> Connection Request</a>
     <div class="profile">
-      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile ▾</button>
+      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile</button>
       <div class="dropdown">
         <a href="#"><i class="fa fa-id-card"></i> View Profile</a>
         <a href="#"><i class="fa fa-edit"></i> Edit Profile</a>
@@ -42,17 +42,28 @@
     </div>
   </div>
 
-  <!-- ===== PAGE CONTENT ===== -->
+  <!-- CONFIRMATION MODEL -->
+   <div class="model" id="confirm_m">
+    <div class="model-content">
+      <p>Confirm you want to logout !</p>
+      <br>
+      <br>
+      <button onclick="c_logout()" class="c_btn">Confirm</button>
+      <button onclick="cancel_lg()" class="c_btn">Cancel</button>
+    </div>
+   </div>
+
+  <!-- PAGE CONTENT -->
   <div class="container">
 
     <div class="page-title"><i class="fa fa-search"></i> Complaint Status</div>
 
-    <!-- ===== SEARCH PANEL (US009 - req 1) ===== -->
+    <!--SEARCH PANEL-->
     <!-- User can search by complaint ID or by status -->
     <div class="white-box">
       <h3 class="box-title"><i class="fa fa-filter"></i> Search Complaint</h3>
 
-      <!-- Complaint Number text box (US009 - req 1) -->
+      <!--Complaint Number text box-->
       <div class="search-row">
         <div class="field-group">
           <label for="search-id">Complaint Number</label>
@@ -61,7 +72,7 @@
 
         <div class="or-text">OR</div>
 
-        <!-- Status dropdown filter (US009 - req 1) -->
+        <!--Status dropdown filter-->
         <div class="field-group">
           <label for="search-status">Status</label>
           <select id="search-status">
@@ -73,7 +84,7 @@
           </select>
         </div>
 
-        <!-- Submit button (US009 - req 1) -->
+        <!-- Submit button-->
         <div class="field-group">
           <label>&nbsp;</label>
           <button class="btn-green" onclick="searchComplaint()">
@@ -86,17 +97,17 @@
       <div id="search-err" class="search-err" style="display:none;"></div>
     </div>
 
-    <!-- ===== RESULTS AREA ===== -->
+    <!--RESULTS AREA-->
     <!-- Hidden until search is done -->
     <div id="results-area" style="display:none;">
 
-      <!-- No results message -->
+      <!--No results message -->
       <div id="no-results" class="white-box" style="display:none; text-align:center; padding:30px; color:#888;">
         <i class="fa fa-inbox" style="font-size:36px; color:#D2DCB6; display:block; margin-bottom:10px;"></i>
         <p>No complaints found matching your search.</p>
       </div>
 
-      <!-- Results table (US009 - req 1: shows complaint ID, date, type, status) -->
+      <!--Results table-->
       <div id="results-box" class="white-box" style="display:none;">
         <h3 class="box-title"><i class="fa fa-list"></i> Search Results</h3>
         <table>
@@ -114,7 +125,7 @@
         </table>
       </div>
 
-      <!-- Complaint detail view (opens when View Details clicked) -->
+      <!--Complaint detail view-->
       <div id="detail-box" class="white-box" style="display:none;">
         <h3 class="box-title"><i class="fa fa-info-circle"></i> Complaint Details</h3>
         <div id="detail-content"></div>
@@ -125,12 +136,10 @@
       </div>
 
     </div>
-    <!-- end results area -->
 
   </div>
-  <!-- end container -->
 
-  <!-- ===== FOOTER ===== -->
+  <!--FOOTER-->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-section">
