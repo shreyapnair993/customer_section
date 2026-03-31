@@ -9,10 +9,10 @@
 </head>
 <body>
 
-  <!-- ===== TOP NAVBAR ===== -->
+  <!--TOP NAVBAR-->
   <div class="top-navbar">
     <div class="logo-section">
-      <div class="logo">⚡</div>
+      <div class="logo"><i class="fa-solid fa-bolt" style="color: rgb(255, 212, 59);"></i></div>
       <div>
         <h2>BillGate</h2>
         <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.</div>
@@ -23,7 +23,7 @@
     </button>
   </div>
 
-  <!-- ===== MENU BAR ===== -->
+  <!--MENU BAR-->
   <div class="menu-bar">
     <a href="../home/home.html"><i class="fa fa-home"></i> Dashboard</a>
     <a href="../view-bills/view-bills.html"><i class="fa fa-file-invoice"></i> View Bills</a>
@@ -33,7 +33,7 @@
     <a href="../complaint-status/complaint-status.html"><i class="fa fa-search"></i> Complaint Status</a>
     <a href="../connection-request/connection-request.html"><i class="fa fa-plug"></i> Connection Request</a>
     <div class="profile">
-      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile ▾</button>
+      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile</button>
       <div class="dropdown">
         <a href="#"><i class="fa fa-id-card"></i> View Profile</a>
         <a href="#"><i class="fa fa-edit"></i> Edit Profile</a>
@@ -42,22 +42,31 @@
     </div>
   </div>
 
-  <!-- ===== PAGE CONTENT ===== -->
+  <!-- CONFIRMATION MODEL -->
+   <div class="model" id="confirm_m">
+    <div class="model-content">
+      <p>Confirm you want to logout !</p>
+      <br>
+      <br>
+      <button onclick="c_logout()" class="c_btn">Confirm</button>
+      <button onclick="cancel_lg()" class="c_btn">Cancel</button>
+    </div>
+   </div>
+
+  <!--PAGE CONTENT-->
   <div class="container">
 
     <div class="page-title"><i class="fa fa-list-alt"></i> Complaint History</div>
 
-    <!-- ===== MAIN TABLE SECTION (US010 - req 1) ===== -->
+    <!-- MAIN TABLE SECTION-->
     <!-- Shows all complaints with: Complaint ID, type, date, status -->
     <div class="white-box">
-
-      <!-- Header row: title + filter -->
       <div class="table-top">
         <h3 class="box-title" style="margin-bottom:0; border-bottom:none;">
           <i class="fa fa-history"></i> All Complaints
         </h3>
 
-        <!-- Filter by status (simple dropdown) -->
+        <!--Filter by status-->
         <div class="filter-area">
           <label for="filter-status"><i class="fa fa-filter"></i> Filter by Status:</label>
           <select id="filter-status" onchange="filterComplaints()">
@@ -101,7 +110,7 @@
 
     </div>
 
-    <!-- ===== DETAIL PANEL (US010 - req 1) ===== -->
+    <!--DETAIL PANEL-->
     <!-- Shows detailed info + notes when user clicks View Details -->
     <!-- Hidden by default -->
     <div id="detail-panel" class="white-box" style="display:none;">
@@ -124,7 +133,7 @@
 
       <br>
 
-      <!-- Notes section (US010 - req 1: each complaint has description and notes) -->
+      <!-- Notes section-->
       <div id="notes-area">
         <!-- Filled by JS -->
       </div>
@@ -132,9 +141,8 @@
     </div>
 
   </div>
-  <!-- end container -->
 
-  <!-- ===== FOOTER ===== -->
+  <!--FOOTER-->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-section">
