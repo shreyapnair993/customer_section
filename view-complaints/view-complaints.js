@@ -1,7 +1,4 @@
-// view-complaints.js
-// Handles: Load all complaints, filter by status, show detail with notes (US010)
-
-// ===== Sample complaint data with notes (US010 - req 1) =====
+// Sample complaint data with notes
 // Each complaint has description and notes as required
 var sampleComplaints = [
   {
@@ -59,10 +56,10 @@ var sampleComplaints = [
   }
 ];
 
-// Store all complaints (sample + user submitted via register page)
+// Store all complaints
 var allComplaints = [];
 
-// ===== Load on page start =====
+//Load on page start
 window.onload = function() {
   // Get any complaints saved from the register complaint page
   var stored = JSON.parse(localStorage.getItem("complaints") || "[]");
@@ -79,7 +76,7 @@ window.onload = function() {
   renderTable(allComplaints);
 };
 
-// ===== Filter complaints by selected status =====
+//Filter complaints by selected status
 function filterComplaints() {
   var filterVal = document.getElementById("filter-status").value;
 
@@ -93,7 +90,7 @@ function filterComplaints() {
   closeDetail();
 }
 
-// ===== Render complaints into the table (US010 - req 1) =====
+// Render complaints into the table
 // Shows Complaint ID, type, date, status for all complaints
 function renderTable(list) {
   var tbody   = document.getElementById("complaints-tbody");
@@ -124,7 +121,7 @@ function renderTable(list) {
   });
 }
 
-// ===== Return status badge HTML =====
+//Return status badge HTML
 function getStatusBadge(status) {
   if (status === "Pending")     return '<span class="status-pending">Pending</span>';
   if (status === "In Progress") return '<span class="status-inprogress">In Progress</span>';
@@ -133,7 +130,7 @@ function getStatusBadge(status) {
   return status;
 }
 
-// ===== Show detailed info for a complaint (US010 - req 1) =====
+// Show detailed info for a complaint 
 // Shows description and any notes as required
 function showDetail(id) {
   // Find the complaint
@@ -153,7 +150,7 @@ function showDetail(id) {
     "<tr><td class='detail-label'>Contact Method</td><td>" + c.contactMethod + ": " + c.contactVal + "</td></tr>" +
     "<tr><td class='detail-label'>Description</td><td>" + c.description + "</td></tr>";
 
-  // Fill notes section (US010 - req 1: each complaint should show description and notes)
+  // Fill notes section
   var notesHtml = "<p class='notes-title'><i class='fa fa-sticky-note'></i> Notes & Updates</p>";
 
   if (c.notes && c.notes.length > 0) {
@@ -175,16 +172,21 @@ function showDetail(id) {
   document.getElementById("detail-panel").scrollIntoView({ behavior: "smooth" });
 }
 
-// ===== Close detail panel =====
+//Close detail panel
 function closeDetail() {
   document.getElementById("detail-panel").style.display = "none";
 }
 
-// ===== Logout =====
+// LOGOUT
 function handleLogout() {
-  var confirmed = confirm("Are you sure you want to logout?");
-  if (confirmed) {
-    localStorage.clear();
-    window.location.href = "../login/login.html";
-  }
+  document.getElementById("confirm_m").style.display = "flex";
+}
+
+function cancel_lg() {
+  document.getElementById("confirm_m").style.display = "none";
+}
+
+function c_logout() {
+  // Redirect to login page
+  window.location.href = "login.html";
 }
