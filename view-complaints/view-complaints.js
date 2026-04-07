@@ -56,6 +56,8 @@ var sampleComplaints = [
   }
 ];
 
+var showAll = false;
+
 // Store all complaints
 var allComplaints = [];
 
@@ -84,7 +86,7 @@ function filterComplaints() {
     ? allComplaints.filter(function(c) { return c.status === filterVal; })
     : allComplaints;
 
-  renderTable(filtered);
+  searchComplaints();
 
   // Close detail panel when filter changes
   closeDetail();
@@ -96,29 +98,44 @@ function renderTable(list) {
   var tbody   = document.getElementById("complaints-tbody");
   var emptyEl = document.getElementById("empty-msg");
   var tableEl = document.getElementById("complaints-table");
+  var viewBtn = document.getElementById("view-all-btn");
 
   tbody.innerHTML = "";
 
   if (list.length === 0) {
     tableEl.style.display = "none";
     emptyEl.style.display = "block";
+    viewBtn.style.display = "none";
     return;
   }
 
   tableEl.style.display = "table";
   emptyEl.style.display = "none";
 
-  list.forEach(function(c) {
-    var row = document.createElement("tr");
-    row.innerHTML =
-      "<td><strong>" + c.id + "</strong></td>" +
-      "<td>" + c.type + "</td>" +
-      "<td>" + c.category + "</td>" +
-      "<td>" + c.date + "</td>" +
-      "<td>" + getStatusBadge(c.status) + "</td>" +
-      "<td><button class='view-btn' onclick=\"showDetail('" + c.id + "')\"><i class='fa fa-eye'></i> View Details</button></td>";
-    tbody.appendChild(row);
-  });
+  //Show only 10 or all
+var displayList = showAll ? list : list.slice(0, 10);
+
+displayList.forEach(function(c) {
+  var row = document.createElement("tr");
+  row.innerHTML =
+    "<td><strong>" + c.id + "</strong></td>" +
+    "<td>" + c.type + "</td>" +
+    "<td>" + c.category + "</td>" +
+    "<td>" + c.date + "</td>" +
+    "<td>" + getStatusBadge(c.status) + "</td>" +
+    "<td><button class='view-btn' onclick=\"showDetail('" + c.id + "')\"><i class='fa fa-eye'></i> View Details</button></td>";
+  tbody.appendChild(row);
+});
+
+//Button logic
+var viewBtn = document.getElementById("view-all-btn");
+
+if (list.length > 10) {
+  viewBtn.style.display = "inline-block";
+  viewBtn.textContent = showAll ? "View Less" : "View All Complaints";
+} else {
+  viewBtn.style.display = "none";
+}
 }
 
 //Return status badge HTML
@@ -189,4 +206,25 @@ function cancel_lg() {
 function c_logout() {
   // Redirect to login page
   window.location.href = "login.html";
+}
+
+/*SEARCH FUNCTION - ADD BELOW */
+function searchComplaints() {
+  var searchVal = document.getElementById("search-id").value.toLowerCase().trim();
+  var filterVal = document.getElementById("filter-status").value;
+
+  var filtered = allComplaints.filter(function(c) {
+    var matchesSearch = c.id.toLowerCase().includes(searchVal);
+    var matchesFilter = filterVal ? c.status === filterVal : true;
+    return matchesSearch && matchesFilter;
+  });
+
+  renderTable(filtered);
+  closeDetail();
+}
+
+// Toggle between showing limited (10) and full complaint list
+function toggleView() {
+  showAll = !showAll; // switch true/false
+  renderTable(allComplaints);
 }
