@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Complaint History - BillGate</title>
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="../shared-header-footer.css" />
   <link rel="stylesheet" href="view-complaints.css" />
 </head>
+
 <body>
 
   <!--TOP NAVBAR-->
@@ -15,7 +17,8 @@
       <div class="logo"><i class="fa-solid fa-bolt" style="color: rgb(255, 212, 59);"></i></div>
       <div>
         <h2>BillGate</h2>
-        <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.</div>
+        <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.
+        </div>
       </div>
     </div>
     <button class="logout-btn" onclick="handleLogout()">
@@ -29,7 +32,8 @@
     <a href="../view-bills/view-bills.html"><i class="fa fa-file-invoice"></i> View Bills</a>
     <a href="../view-bills/view-bills.html"><i class="fa fa-credit-card"></i> Pay Bill</a>
     <a href="../bill-history/bill-history.html"><i class="fa fa-history"></i> Bill History</a>
-    <a href="../register-complaint/register-complaint.html"><i class="fa fa-exclamation-circle"></i> Register Complaint</a>
+    <a href="../register-complaint/register-complaint.html"><i class="fa fa-exclamation-circle"></i> Register
+      Complaint</a>
     <a href="../complaint-status/complaint-status.html"><i class="fa fa-search"></i> Complaint Status</a>
     <a href="../connection-request/connection-request.html"><i class="fa fa-plug"></i> Connection Request</a>
     <div class="profile">
@@ -43,7 +47,7 @@
   </div>
 
   <!-- CONFIRMATION MODEL -->
-   <div class="model" id="confirm_m">
+  <div class="model" id="confirm_m">
     <div class="model-content">
       <p>Confirm you want to logout !</p>
       <br>
@@ -51,7 +55,7 @@
       <button onclick="c_logout()" class="c_btn">Confirm</button>
       <button onclick="cancel_lg()" class="c_btn">Cancel</button>
     </div>
-   </div>
+  </div>
 
   <!--PAGE CONTENT-->
   <div class="container">
@@ -66,16 +70,28 @@
           <i class="fa fa-history"></i> All Complaints
         </h3>
 
-        <!--Filter by status-->
-        <div class="filter-area">
-          <label for="filter-status"><i class="fa fa-filter"></i> Filter by Status:</label>
-          <select id="filter-status" onchange="filterComplaints()">
-            <option value="">All</option>
-            <option value="Pending">Pending</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Resolved">Resolved</option>
-            <option value="Closed">Closed</option>
-          </select>
+        <div style="display:flex; gap:12px; align-items:center;">
+
+          <!-- SEARCH BY COMPLAINT ID -->
+          <div class="search-area">
+            <input type="text" id="search-id" placeholder="Search by Complaint ID..." oninput="searchComplaints()" />
+            <i class="fa fa-search"></i>
+          </div>
+
+          <!-- FILTER -->
+          <div class="filter-area">
+            <label for="filter-status">
+              <i class="fa fa-filter"></i> Filter by Status:
+            </label>
+            <select id="filter-status" onchange="filterComplaints()">
+              <option value="">All</option>
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+
         </div>
       </div>
 
@@ -97,13 +113,20 @@
           <!-- Rows filled by JS -->
         </tbody>
       </table>
+      
+      <div class="view-toggle-container">
+        <button id="view-all-btn" class="btn-outline" onclick="toggleView()" style="display:none;">
+          View All Complaints
+        </button>
+      </div>
 
       <!-- Empty state message if no records -->
       <div id="empty-msg" style="display:none; text-align:center; padding:30px; color:#888;">
         <i class="fa fa-inbox" style="font-size:36px; color:#D2DCB6; display:block; margin-bottom:10px;"></i>
         <p>No complaints found.</p>
         <br>
-        <a href="../register-complaint/register-complaint.html" class="btn-green" style="text-decoration:none; display:inline-block;">
+        <a href="../register-complaint/register-complaint.html" class="btn-green"
+          style="text-decoration:none; display:inline-block;">
           <i class="fa fa-plus"></i> Register a Complaint
         </a>
       </div>
@@ -174,4 +197,5 @@
 
   <script src="view-complaints.js"></script>
 </body>
+
 </html>
