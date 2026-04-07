@@ -78,6 +78,34 @@
   outline: none;
 }
 
+/*Search bar */
+.search-area {
+  position: relative;
+}
+
+.search-area input {
+  padding: 7px 30px 7px 10px;
+  border: 1px solid #D2DCB6;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.search-area input:focus {
+  border-color: #778873;
+  outline: none;
+}
+
+/* Search icon inside input */
+.search-area i {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #778873;
+  font-size: 13px;
+}
+
 /*MAIN COMPLAINTS TABLE*/
 table {
   width: 100%;
@@ -209,4 +237,21 @@ tr:hover {
 .no-notes {
   color: #888;
   font-size: 13px;
+}
+
+/* View All / View Less button container */
+.view-toggle-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Slight enhancement for button */
+#view-all-btn {
+  min-width: 180px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+#view-all-btn:hover {
+  transform: scale(1.05);
 }
