@@ -1,4 +1,17 @@
-// ===== Category options for each complaint type (US008 - req 1) =====
+function validateConsumer() {
+  var consumer = document.getElementById("consumer-no").value.trim();
+  var err = document.getElementById("err-consumer");
+
+  if (!consumer) {
+    err.textContent = "Consumer number is required.";
+    return false;
+  } else {
+    err.textContent = "";
+    return true;
+  }
+}
+
+//Category options for each complaint type
 var categories = {
   billing: ["Incorrect Bill Amount", "Duplicate Bill", "Bill Not Received", "Overcharged", "Late Fee Dispute"],
   power:   ["Complete Power Outage", "Frequent Power Cuts", "Low Voltage", "Voltage Fluctuation"],
@@ -8,7 +21,7 @@ var categories = {
   other:   ["General Enquiry", "Feedback", "Other Issue"]
 };
 
-// ===== Load categories based on selected complaint type (US008 - req 1) =====
+//Load categories based on selected complaint type
 function loadCategories() {
   var typeVal = document.getElementById("complaint-type").value;
   var catSelect = document.getElementById("category");
@@ -33,30 +46,30 @@ function loadCategories() {
   document.getElementById("err-type").textContent = "";
 }
 
-// ===== Update character count for description (US008 - req 2) =====
+//Update character count for description
 function countChars() {
   var len = document.getElementById("description").value.length;
   document.getElementById("char-count").textContent = len + " / 500 characters";
 }
 
-// ===== Validate email format =====
+//Validate email format 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// ===== Validate phone number (10 digits) =====
+//Validate phone number (10 digits)
 function isValidPhone(phone) {
   var cleaned = phone.replace(/[\s\-+]/g, "").replace(/^91/, "");
   return /^\d{10}$/.test(cleaned);
 }
 
-// ===== Generate unique Complaint ID =====
+//  Generate unique Complaint ID
 function makeComplaintId() {
   var num = Math.floor(100000 + Math.random() * 900000);
   return "CMP-" + num;
 }
 
-// ===== Get estimated resolution time by type (US008 - req 3) =====
+//Get estimated resolution time by type
 function getResolutionTime(type) {
   var times = {
     billing: "3-5 Business Days",
@@ -69,8 +82,7 @@ function getResolutionTime(type) {
   return times[type] || "3-5 Business Days";
 }
 
-// ===== Validate the form (US008 - req 2) =====
-// Returns true if all fields are valid, false otherwise
+//Validate the form
 function validateForm() {
   var valid = true;
 
@@ -94,15 +106,23 @@ function validateForm() {
     valid = false;
   }
 
-  // Check description - minimum 20 characters
+  // // Check description - minimum 20 characters
+  // var desc = document.getElementById("description").value.trim();
+  // if (!desc) {
+  //   document.getElementById("err-description").textContent = "Description is required.";
+  //   valid = false;
+  // } else if (desc.length < 20) {
+  //   document.getElementById("err-description").textContent = "Description must be at least 20 characters.";
+  //   valid = false;
+  // }
+
+  //DESCRIPTION
   var desc = document.getElementById("description").value.trim();
-  if (!desc) {
-    document.getElementById("err-description").textContent = "Description is required.";
-    valid = false;
-  } else if (desc.length < 20) {
-    document.getElementById("err-description").textContent = "Description must be at least 20 characters.";
-    valid = false;
-  }
+
+if (!desc) {
+  document.getElementById("err-description").textContent = "Description is required (enter details or 'NA').";
+  valid = false;
+}
 
   // Check contact method radio
   var contactSelected = document.querySelector('input[name="contact-method"]:checked');
@@ -135,12 +155,13 @@ function validateForm() {
   return valid;
 }
 
-// ===== Submit form (US008 - req 3) =====
+//Submit form
 function submitForm() {
   // Stop if validation fails
   if (!validateForm()) return;
 
   // Gather values
+  var consumer = document.getElementById("consumer-no").value.trim();
   var typeEl   = document.getElementById("complaint-type");
   var typeText = typeEl.options[typeEl.selectedIndex].text;
   var category = document.getElementById("category").value;
@@ -154,8 +175,9 @@ function submitForm() {
   var submitDate = new Date().toLocaleDateString("en-IN", { day:"2-digit", month:"short", year:"numeric" });
   var resolution = getResolutionTime(typeEl.value);
 
-  // Show success box with complaint details (US008 - req 3)
+  // Show success box with complaint details
   document.getElementById("success-details").innerHTML =
+  '<div class="detail-row"><span class="detail-key">Consumer Number:</span> ' + consumer + '</div>' +
     '<div class="detail-row"><span class="detail-key">Complaint ID:</span> <span class="cmp-id">' + cmpId + '</span></div>' +
     '<div class="detail-row"><span class="detail-key">Submission Date:</span> ' + submitDate + '</div>' +
     '<div class="detail-row"><span class="detail-key">Complaint Type:</span> ' + typeText + '</div>' +
@@ -168,6 +190,7 @@ function submitForm() {
   var complaints = JSON.parse(localStorage.getItem("complaints") || "[]");
   complaints.push({
     id: cmpId,
+    consumerNo: consumer,
     type: typeText,
     category: category,
     description: desc,
@@ -183,9 +206,16 @@ function submitForm() {
   document.getElementById("form-box").style.display = "none";
   document.getElementById("success-box").style.display = "block";
   window.scrollTo(0, 0);
+
+  var valid = true;
+
+// Consumer number validation
+if (!validateConsumer()) {
+  valid = false;
+}
 }
 
-// ===== Reset form (US008 - req 1: Reset button resets and refreshes) =====
+//Reset form
 function resetForm() {
   document.getElementById("complaint-type").value = "";
   document.getElementById("category").innerHTML = '<option value="">-- Select Category --</option>';
