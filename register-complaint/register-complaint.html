@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Register Complaint - BillGate</title>
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="../shared-header-footer.css" />
   <link rel="stylesheet" href="register-complaint.css" />
 </head>
+
 <body>
 
   <!--TOP NAVBAR-->
@@ -15,24 +17,14 @@
       <div class="logo"><i class="fa-solid fa-bolt" style="color: rgb(255, 212, 59);"></i></div>
       <div>
         <h2>BillGate</h2>
-        <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.</div>
+        <div class="tagline">One <span class="highlight">Gate</span>way. Pay Your <span class="highlight">Bill</span>s.
+        </div>
       </div>
     </div>
     <button class="logout-btn" onclick="handleLogout()">
       <i class="fa fa-sign-out-alt"></i> Logout
     </button>
   </div>
-
-   <!-- CONFIRMATION MODEL -->
-   <div class="model" id="confirm_m">
-    <div class="model-content">
-      <p>Confirm you want to logout !</p>
-      <br>
-      <br>
-      <button onclick="c_logout()" class="c_btn">Confirm</button>
-      <button onclick="cancel_lg()" class="c_btn">Cancel</button>
-    </div>
-   </div>
 
   <!-- MENU BAR -->
   <div class="menu-bar">
@@ -44,7 +36,7 @@
     <a href="../complaint-status/complaint-status.html"><i class="fa fa-search"></i> Complaint Status</a>
     <a href="../connection-request/connection-request.html"><i class="fa fa-plug"></i> Connection Request</a>
     <div class="profile">
-      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile ▾</button>
+      <button class="profile-btn"><i class="fa fa-user-circle"></i> Profile</button>
       <div class="dropdown">
         <a href="#"><i class="fa fa-id-card"></i> View Profile</a>
         <a href="#"><i class="fa fa-edit"></i> Edit Profile</a>
@@ -53,12 +45,23 @@
     </div>
   </div>
 
+  <!-- CONFIRMATION MODEL -->
+  <div class="model" id="confirm_m">
+    <div class="model-content">
+      <p>Confirm you want to logout !</p>
+      <br>
+      <br>
+      <button onclick="c_logout()" class="c_btn">Confirm</button>
+      <button onclick="cancel_lg()" class="c_btn">Cancel</button>
+    </div>
+  </div>
+
   <!--PAGE CONTENT  -->
   <div class="container">
 
     <div class="page-title"><i class="fa fa-exclamation-circle"></i> Register Complaint / Service Request</div>
 
-    <!-- Success box - shown after successful submission (US008 - req 3) -->
+    <!-- Success box - shown after successful submission-->
     <!-- Hidden by default, shown by JS after form submit -->
     <div id="success-box" style="display:none;" class="success-box">
       <h3><i class="fa fa-check-circle"></i> Complaint Registered Successfully!</h3>
@@ -73,11 +76,19 @@
       </button>
     </div>
 
-    <!-- COMPLAINT FORM (US008 - req 1) -->
+    <!-- COMPLAINT FORM-->
     <div id="form-box" class="white-box">
       <h3 class="box-title"><i class="fa fa-pen"></i> Complaint Details</h3>
 
-      <!-- Complaint Type dropdown (US008 - req 1) -->
+      <!-- Consumer Number -->
+      <div class="field-group">
+        <label for="consumer-no">Consumer Number <span class="star">*</span></label>
+        <input type="text" id="consumer-no" placeholder="Enter your consumer number" maxlength="15"
+          onblur="validateConsumer()" />
+        <span class="err" id="err-consumer"></span>
+      </div>
+
+      <!-- Complaint Type dropdown-->
       <div class="field-group">
         <label for="complaint-type">Complaint Type <span class="star">*</span></label>
         <select id="complaint-type" onchange="loadCategories()">
@@ -92,7 +103,7 @@
         <span class="err" id="err-type"></span>
       </div>
 
-      <!-- Category dropdown - updates based on complaint type (US008 - req 1) -->
+      <!-- Category dropdown-->
       <div class="field-group">
         <label for="category">Category <span class="star">*</span></label>
         <select id="category" disabled>
@@ -101,17 +112,17 @@
         <span class="err" id="err-category"></span>
       </div>
 
-      <!-- Description text area with character limit (US008 - req 1 & req 2) -->
+      <!-- Description text area with character limit-->
       <div class="field-group">
         <label for="description">Description <span class="star">*</span></label>
         <textarea id="description" rows="5" maxlength="500"
-          placeholder="Describe your complaint in detail (minimum 20 characters)..."
+          placeholder="Describe your complaint in detail (if no description write NA)..."
           oninput="countChars()"></textarea>
         <small id="char-count">0 / 500 characters</small>
         <span class="err" id="err-description"></span>
       </div>
 
-      <!-- Preferred Contact Method radio buttons (US008 - req 1) -->
+      <!-- Preferred Contact Method radio buttons-->
       <div class="field-group">
         <label>Preferred Contact Method <span class="star">*</span></label>
         <div class="radio-row">
@@ -128,7 +139,7 @@
         <span class="err" id="err-contact"></span>
       </div>
 
-      <!-- Contact Details - pre-filled but editable (US008 - req 1) -->
+      <!-- Contact Details-->
       <div class="two-col">
         <div class="field-group">
           <label for="email-val">Email Address <span class="star">*</span></label>
@@ -142,8 +153,7 @@
         </div>
       </div>
 
-      <!-- Submit and Reset buttons (US008 - req 1) -->
-      <!-- Reset button resets and refreshes the page -->
+      <!-- Submit and Reset buttons-->
       <div class="btn-row">
         <button class="btn-green" onclick="submitForm()">
           <i class="fa fa-paper-plane"></i> Submit Complaint
@@ -154,12 +164,11 @@
       </div>
 
     </div>
-    <!-- end form box -->
 
   </div>
-  <!-- end container -->
 
-  <!-- ===== FOOTER ===== -->
+
+  <!-- FOOTER-->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-section">
@@ -191,4 +200,5 @@
 
   <script src="register-complaint.js"></script>
 </body>
+
 </html>
